@@ -14,7 +14,7 @@ class TalkerNode(Node):
 
        # declare with default values
        self.declare_parameter('v', 0.0)   # default speed (v)
-       self.declare_parameter('d', 2.0)   # default stearing angle (d)
+       self.declare_parameter('d', 0.0)   # default stearing angle (d)
 
        # get value from Node and put it in self variables
        self.v = self.get_parameter('v').get_parameter_value().double_value
