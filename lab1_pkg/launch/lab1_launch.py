@@ -6,13 +6,12 @@ from ament_index_python.packages import get_package_share_directory
 import os
 import yaml
 
-
 def generate_launch_description():
     ld = LaunchDescription()
 
+    # allows for command line input
     v_parameter = LaunchConfiguration('v', default=0.0)
     d_parameter = LaunchConfiguration('d', default=0.0)
-
 
     talker_node = Node(
         package='lab1_pkg',

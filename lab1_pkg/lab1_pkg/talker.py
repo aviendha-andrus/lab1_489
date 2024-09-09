@@ -1,6 +1,6 @@
 # PUBLISHER
 # command line example format
-# ros2 launch lab1_launch.py v:=2.0 d:=3.0 # sets v and d parameters
+# ros2 launch lab1_pkg lab1_launch.py v:=2.0 d:=3.0 # sets v and d parameters
 
 # IMPORTS
 import rclpy
@@ -14,26 +14,17 @@ class TalkerNode(Node):
 
        # declare with default values
        self.declare_parameter('v', 0.0)   # default speed (v)
-       self.declare_parameter('d', 0.0)   # default stearing angle (d)
+       self.declare_parameter('d', 2.0)   # default stearing angle (d)
 
        # get value from Node and put it in self variables
        self.v = self.get_parameter('v').get_parameter_value().double_value
        self.d = self.get_parameter('d').get_parameter_value().double_value
 
-      #  # one line? 
-      #  # declares with default values,
-      #  # then gets value from the parameter Node and puts it in self variable
-      #  self.v = self.declare_parameter('v', 0.0).get_parameter_value().double_value
-      #  self.d = self.declare_parameter('d', 0.0).get_parameter_value().double_value
-
        # create publisher
        self.publisher_ = self.create_publisher(AckermannDriveStamped, 'drive', 10)
 
-
-       # what does "as fast as possible mean?" for now... slow?
-       timer_period = 0.5  # seconds
+       timer_period = 0.5
        self.timer = self.create_timer(timer_period, self.timer_callback)
-
 
    def timer_callback(self):
        # define message 
